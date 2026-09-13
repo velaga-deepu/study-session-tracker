@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Session Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #333; }
+        form { background: #f4f4f4; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box; }
+        button { background: #4a63e7; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+        a { color: #4a63e7; }
+    </style>
+</head>
+<body>
+    <h1>Study Session Tracker</h1>
+
+    <form action="/add" method="POST">
+        <label>Subject</label>
+        <input type="text" name="subject" required>
+
+        <label>Minutes studied</label>
+        <input type="number" name="minutes" required>
+
+        <label>Date</label>
+        <input type="date" name="date" required>
+
+        <button type="submit">Add Session</button>
+    </form>
+
+    <p><a href="/summary">View summary by subject &rarr;</a></p>
+
+    <h2>All Sessions</h2>
+    <table>
+        <tr><th>Date</th><th>Subject</th><th>Minutes</th></tr>
+        {% for s in sessions %}
+        <tr>
+            <td>{{ s.date }}</td>
+            <td>{{ s.subject }}</td>
+            <td>{{ s.minutes }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
